@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -v)",
+      "Bash(php -r 'try{new PDO\\('\\\\''mysql:host=127.0.0.1;port=3306'\\\\'','\\\\''root'\\\\'','\\\\'''\\\\''\\);echo '\\\\''MYSQL_UP'\\\\'';}catch\\(Exception $e\\){echo '\\\\''MYSQL_DOWN: '\\\\''.$e->getMessage\\(\\);}')",
+      "Bash(php -r 'try{$p=new PDO\\('\\\\''mysql:host=127.0.0.1;port=3306'\\\\'','\\\\''root'\\\\'','\\\\'''\\\\''\\);$r=$p->query\\(\"SHOW DATABASES LIKE '\\\\''rathna_collections'\\\\''\"\\)->fetchAll\\(\\);echo count\\($r\\)?'\\\\''DB_EXISTS'\\\\'':'\\\\''DB_ABSENT'\\\\'';}catch\\(Exception $e\\){echo '\\\\''skip'\\\\'';}')",
+      "Bash(php -r 'try{new PDO\\('\\\\''mysql:host=127.0.0.1;port=3306'\\\\'','\\\\''root'\\\\'','\\\\'''\\\\''\\);echo '\\\\''MYSQL_UP'\\\\'';}catch\\(Exception $e\\){echo '\\\\''MYSQL_DOWN'\\\\'';}')",
+      "Bash(composer dump-autoload *)",
+      "Bash(npm install *)",
+      "Bash(php -r '$p=new PDO\\('\\\\''mysql:host=127.0.0.1;port=3306'\\\\'','\\\\''root'\\\\'','\\\\'''\\\\''\\);$p->exec\\('\\\\''CREATE DATABASE IF NOT EXISTS rathna_collections CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci'\\\\''\\);echo '\\\\''DB_READY'\\\\'';')",
+      "Bash(php artisan *)",
+      "Bash(npm run *)",
+      "Bash(command -v chromium chrome google-chrome chrome.exe)"
+    ]
+  }
+}

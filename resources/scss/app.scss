@@ -1,0 +1,153 @@
+// ===================================================================
+// Rathna Collections – global stylesheet
+// Bootstrap 5 with the royal-purple + gold brand theme (from the logo).
+// ===================================================================
+
+// 1. Brand palette (from the Rathna Collections emblem).
+$rc-purple-dark: #10003C;
+$rc-purple:      #28013F;
+$rc-purple-mid:  #3d1063;
+$rc-gold:        #FBCA33;
+$rc-gold-light:  #F9EC77;
+$rc-gold-deep:   #E0A93A;
+
+// 2. Bootstrap theme overrides applied BEFORE the core so utilities inherit them.
+$primary:   #2e0a4f; // royal purple
+$secondary: #1b1b1b;
+$success:   #2e7d32;
+$dark:      $rc-purple-dark;
+$font-family-sans-serif: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+$enable-shadows: true;
+$border-radius: .5rem;
+$link-color: $primary;
+
+// 3. Bootstrap core + icons.
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+// 4. Brand CSS variables for reuse outside Sass.
+:root {
+    --rc-purple-dark: #{$rc-purple-dark};
+    --rc-purple: #{$rc-purple};
+    --rc-gold: #{$rc-gold};
+    --rc-gold-light: #{$rc-gold-light};
+    --rc-gradient: linear-gradient(135deg, #{$rc-purple-dark} 0%, #{$rc-purple} 55%, #{$rc-purple-mid} 100%);
+}
+
+// 5. Layout scaffolding.
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+// 6. Brand utilities.
+.text-gold { color: var(--rc-gold) !important; }
+.bg-rc-gradient { background: var(--rc-gradient) !important; }
+.text-purple { color: var(--rc-purple) !important; }
+
+.btn-gold {
+    --bs-btn-color: #{$rc-purple-dark};
+    --bs-btn-bg: #{$rc-gold};
+    --bs-btn-border-color: #{$rc-gold};
+    --bs-btn-hover-color: #{$rc-purple-dark};
+    --bs-btn-hover-bg: #{$rc-gold-light};
+    --bs-btn-hover-border-color: #{$rc-gold-light};
+    --bs-btn-active-bg: #{$rc-gold-deep};
+    font-weight: 600;
+}
+
+.btn-outline-gold {
+    --bs-btn-color: #{$rc-gold-deep};
+    --bs-btn-border-color: #{$rc-gold};
+    --bs-btn-hover-color: #{$rc-purple-dark};
+    --bs-btn-hover-bg: #{$rc-gold};
+    --bs-btn-hover-border-color: #{$rc-gold};
+}
+
+// 7. Storefront navbar (light, so the dark-text logo reads) with a gold underline.
+.rc-navbar {
+    background: #fff;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, #{$rc-gold-light}, #{$rc-gold}, #{$rc-gold-deep}) 1;
+    box-shadow: 0 2px 12px rgba(16, 0, 60, .06);
+
+    .navbar-brand img { height: 46px; width: auto; }
+
+    .nav-link {
+        color: $rc-purple;
+        font-weight: 500;
+
+        &:hover,
+        &.active {
+            color: $rc-gold-deep;
+        }
+    }
+}
+
+// 8. Hero + section banners.
+.rc-hero {
+    background: var(--rc-gradient);
+    color: #fff;
+
+    .btn-gold { box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2); }
+}
+
+// 9. Product cards.
+.product-card {
+    transition: transform .18s ease, box-shadow .18s ease;
+    border: 1px solid rgba(46, 10, 79, .06);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 .75rem 1.5rem rgba(16, 0, 60, .15);
+    }
+
+    img { object-fit: cover; aspect-ratio: 3 / 4; }
+}
+
+// 10. Footer – deep purple with gold headings.
+.rc-footer {
+    background: var(--rc-gradient);
+    color: rgba(255, 255, 255, .82);
+
+    h5, h6 { color: $rc-gold; }
+    .rc-footer-logo { height: 54px; }
+    a.link-light:hover { color: $rc-gold-light !important; }
+}
+
+// 11. Admin shell – royal purple sidebar with gold active state.
+.admin-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: var(--rc-gradient) !important;
+
+    .admin-brand img { height: 46px; }
+
+    .nav-link {
+        color: rgba(255, 255, 255, .78);
+        border-radius: .4rem;
+
+        i { color: $rc-gold; }
+
+        &:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, .08);
+        }
+
+        &.active {
+            color: $rc-purple-dark;
+            background: linear-gradient(90deg, #{$rc-gold-light}, #{$rc-gold});
+            font-weight: 600;
+
+            i { color: $rc-purple-dark; }
+        }
+    }
+}
+
+// 12. Auth pages brand lockup.
+.auth-logo { max-width: 320px; height: auto; }
