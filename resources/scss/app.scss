@@ -70,11 +70,35 @@ main {
 }
 
 // 7. Storefront navbar (light, so the dark-text logo reads) with a gold underline.
+// .rc-navbar {
+//     background: #fff;
+//     border-bottom: 3px solid transparent;
+//     border-image: linear-gradient(90deg, #{$rc-gold-light}, #{$rc-gold}, #{$rc-gold-deep}) 1;
+//     box-shadow: 0 2px 12px rgba(16, 0, 60, .06);
+
+//     .navbar-brand img { height: 46px; width: auto; }
+
+//     .nav-link {
+//         color: $rc-purple;
+//         font-weight: 500;
+
+//         &:hover,
+//         &.active {
+//             color: $rc-gold-deep;
+//         }
+//     }
+// }
+
+// 7. Storefront navbar.
 .rc-navbar {
     background: #fff;
     border-bottom: 3px solid transparent;
     border-image: linear-gradient(90deg, #{$rc-gold-light}, #{$rc-gold}, #{$rc-gold-deep}) 1;
     box-shadow: 0 2px 12px rgba(16, 0, 60, .06);
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+
+    > .container { position: relative; }
 
     .navbar-brand img { height: 46px; width: auto; }
 
@@ -83,12 +107,311 @@ main {
         font-weight: 500;
 
         &:hover,
-        &.active {
-            color: $rc-gold-deep;
+        &.active { color: $rc-gold-deep; }
+    }
+
+    .navbar-toggler {
+        border-color: rgba(46, 10, 79, .15);
+        padding: .3rem .5rem;
+
+        &:focus { box-shadow: 0 0 0 .2rem rgba(251, 202, 51, .35); }
+    }
+}
+
+// 7a. Always-visible action icons.
+.rc-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: .15rem;
+    margin-left: auto;
+
+    @include media-breakpoint-up(lg) { margin-left: 0; }
+}
+
+.rc-icon-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 .35rem;
+    border: 0;
+    background: none;
+    color: $rc-purple;
+    font-size: 1.15rem;
+    text-decoration: none;
+    border-radius: .5rem;
+    transition: color .15s ease, background-color .15s ease;
+
+    &:hover,
+    &:focus-visible {
+        color: $rc-gold-deep;
+        background: rgba(46, 10, 79, .05);
+    }
+}
+
+.rc-user-btn {
+    width: auto;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.rc-icon-badge {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    min-width: 17px;
+    padding: 0 4px;
+    font-size: .65rem;
+    font-weight: 700;
+    line-height: 17px;
+    color: #fff;
+    text-align: center;
+    border-radius: 999px;
+    box-shadow: 0 0 0 2px #fff;
+}
+
+// 7b. Search field with inline icon.
+.rc-nav-search {
+    position: relative;
+
+    i {
+        position: absolute;
+        top: 50%;
+        left: .7rem;
+        transform: translateY(-50%);
+        color: rgba(40, 1, 63, .45);
+        font-size: .85rem;
+        pointer-events: none;
+    }
+
+    .form-control {
+        padding-left: 2rem;
+        background: rgba(46, 10, 79, .04);
+        border-color: transparent;
+
+        &:focus {
+            background: #fff;
+            border-color: $rc-gold;
+            box-shadow: 0 0 0 .2rem rgba(251, 202, 51, .25);
         }
     }
 }
 
+// 7c. Accordion chevron.
+.rc-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rc-mega-toggle {
+    border: 0;
+    background: none;
+    color: rgba(40, 1, 63, .55);
+    padding: .5rem .75rem;
+    line-height: 1;
+    transition: transform .25s ease, color .15s ease;
+
+    &[aria-expanded="true"] {
+        transform: rotate(180deg);
+        color: $rc-gold-deep;
+    }
+}
+
+// 7d. Mega panel — shared styles.
+.rc-mega {
+    .rc-mega-heading {
+        display: block;
+        font-weight: 600;
+        font-size: .95rem;
+        color: $rc-purple;
+        text-decoration: none;
+        padding-bottom: .4rem;
+        border-bottom: 1px solid rgba(46, 10, 79, .08);
+        margin-bottom: .5rem;
+
+        &:hover { color: $rc-gold-deep; }
+    }
+
+    .rc-mega-tag {
+        font-size: .65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        color: $rc-purple-dark;
+        background: linear-gradient(90deg, #{$rc-gold-light}, #{$rc-gold});
+        border-radius: 999px;
+        padding: .1rem .45rem;
+        margin-left: .35rem;
+        vertical-align: middle;
+    }
+
+    .rc-mega-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li + li { margin-top: .15rem; }
+
+        a {
+            display: block;
+            font-size: .875rem;
+            color: rgba(40, 1, 63, .72);
+            text-decoration: none;
+            padding: .18rem 0;
+            transition: color .15s ease, padding-left .15s ease;
+
+            &:hover {
+                color: $rc-gold-deep;
+                padding-left: .3rem;
+            }
+        }
+    }
+
+    .rc-mega-sublist {
+        margin: .15rem 0 .35rem .7rem;
+        padding-left: .6rem;
+        border-left: 1px solid rgba(46, 10, 79, .1);
+
+        a { font-size: .8rem; color: rgba(40, 1, 63, .58); }
+    }
+
+    .rc-mega-promo {
+        position: relative;
+        display: block;
+        height: 100%;
+        min-height: 220px;
+        border-radius: .5rem;
+        overflow: hidden;
+        text-decoration: none;
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .4s ease;
+        }
+
+        .rc-mega-promo-body {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            min-height: 220px;
+            padding: 1rem;
+            color: #fff;
+            background: linear-gradient(180deg, rgba(16, 0, 60, 0) 35%, rgba(16, 0, 60, .85) 100%);
+        }
+
+        .rc-mega-promo-title { font-weight: 600; font-size: 1.05rem; }
+        .rc-mega-promo-cta { font-size: .8rem; color: $rc-gold; }
+
+        &:hover img { transform: scale(1.06); }
+    }
+
+    .rc-mega-footer {
+        margin-top: 1rem;
+        padding-top: .75rem;
+        border-top: 1px solid rgba(46, 10, 79, .08);
+        text-align: right;
+
+        a {
+            font-size: .875rem;
+            font-weight: 600;
+            color: $rc-gold-deep;
+            text-decoration: none;
+
+            &:hover { color: $rc-purple; }
+        }
+    }
+}
+
+// 7e. Desktop — full-width hover panel. Overrides Bootstrap's collapse hiding.
+@include media-breakpoint-up(lg) {
+    .rc-navbar .rc-mega {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: block !important;
+        height: auto !important;
+        overflow-y: auto;
+        max-height: min(70vh, 34rem);
+        padding: 1.75rem 0 1.25rem;
+        background: #fff;
+        border-top: 3px solid $rc-gold;
+        border-radius: 0 0 .5rem .5rem;
+        box-shadow: 0 1rem 2rem rgba(16, 0, 60, .14);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: opacity .18s ease, transform .18s ease, visibility .18s;
+
+        // Bridge so the pointer can travel from the link into the panel.
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -14px;
+            height: 14px;
+        }
+    }
+
+    .rc-has-mega:hover > .rc-mega,
+    .rc-has-mega:focus-within > .rc-mega {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        pointer-events: auto;
+    }
+}
+
+// 7f. Mobile — inline accordion inside the collapsed navbar.
+@include media-breakpoint-down(lg) {
+    .rc-navbar .navbar-collapse {
+        max-height: calc(100vh - 5rem);
+        overflow-y: auto;
+        padding-top: .5rem;
+        margin-top: .5rem;
+        border-top: 1px solid rgba(46, 10, 79, .08);
+    }
+
+    .rc-navbar .nav-link {
+        padding-top: .6rem;
+        padding-bottom: .6rem;
+    }
+
+    .rc-navbar .rc-nav-row {
+        border-bottom: 1px solid rgba(46, 10, 79, .06);
+    }
+
+    .rc-mega {
+        padding: .5rem 0 .75rem .9rem;
+        margin-bottom: .35rem;
+        background: rgba(46, 10, 79, .03);
+        border-left: 2px solid $rc-gold;
+        border-radius: 0 .35rem .35rem 0;
+
+        .container { padding: 0; }
+        .rc-mega-footer { text-align: left; margin-top: .75rem; }
+        .rc-mega-list a { padding: .3rem 0; }   // easier tap targets
+    }
+
+    .rc-nav-search {
+        margin: .75rem 0 .25rem;
+
+        .form-control { padding-top: .5rem; padding-bottom: .5rem; }
+    }
+}
 // 8. Hero + section banners.
 .rc-hero {
     background: var(--rc-gradient);

@@ -29,7 +29,8 @@ class CategoryController extends Controller
 
     public function create(): View
     {
-        $parents = Category::parents()->orderBy('name')->get();
+        // $parents = Category::parents()->orderBy('name')->get();
+        $parents = Category::orderBy('name')->get();
 
         return view('admin.categories.create', compact('parents'));
     }
@@ -47,7 +48,8 @@ class CategoryController extends Controller
     public function edit(Category $category): View
     {
         // Prevent choosing itself as a parent.
-        $parents = Category::parents()->where('id', '!=', $category->id)->orderBy('name')->get();
+        // $parents = Category::parents()->where('id', '!=', $category->id)->orderBy('name')->get();
+        $parents = Category::where('id', '!=', $category->id)->orderBy('name')->get();
 
         return view('admin.categories.edit', compact('category', 'parents'));
     }
